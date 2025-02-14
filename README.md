@@ -78,5 +78,5 @@ A minimal **Node.js + TypeScript** setup with **debugging** and **concurrent exe
 ## 🚀 Happy Coding! 🎯
 
 ```sh
-  Let me know if you need any modifications! 🚀🔥
+Let me know if you need any modifications! 🚀🔥
 ```
