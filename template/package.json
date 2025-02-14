@@ -1,0 +1,24 @@
+{
+  "name": "ignite-node-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build-dev": "npx tsc --watch --project tsconfig.node.json",
+    "start-dev": "node --watch dist/index.js",
+    "dev": "concurrently \"npm:build-dev\" \"npm:start-dev\"",
+    "build": "npx tsc --project tsconfig.app.json && node esbuild.config.js",
+    "start": "node dist/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.25.0",
+    "javascript-obfuscator": "^4.1.1",
+    "typescript": "^5.7.3"
+  }
+}

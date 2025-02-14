@@ -1,21 +1,24 @@
 {
-  "name": "ts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "build-dev": "npx tsc --watch --project tsconfig.dev.json",
-    "start-dev": "node --watch dist/index.js",
-    "dev": "concurrently \"npm:build-dev\" \"npm:start-dev\"",
-    "build": "npx tsc --project tsconfig.prod.json",
-    "start": "node dist/index.js"
+  "name": "ignite-node-ts",
+  "version": "1.0.2",
+  "description": "CLI to generate a Node.js + TypeScript project",
+  "keywords": [
+    "node",
+    "typescript",
+    "boilerplate",
+    "cli"
+  ],
+  "homepage": "https://github.com/Tanvir04khan/NodeJS-TS#readme",
+  "bugs": {
+    "url": "https://github.com/Tanvir04khan/NodeJS-TS/issues"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tanvir04khan/NodeJS-TS.git"
+  },
   "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "concurrently": "^9.1.2",
-    "typescript": "^5.7.3"
+  "author": "Tanvir04Khan",
+  "bin": {
+    "nodejs-ts": "bin/create-app.js"
   }
 }
