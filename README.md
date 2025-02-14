@@ -58,9 +58,9 @@ A minimal **Node.js + TypeScript** setup with **debugging** and **concurrent exe
 
 ## 🐞 Debugging Setup
 
-- Open .vscode/launch.json
+- Open `.vscode/launch.json`
 - Use the "Debug TS" profile
-- Press F5 to start debugging
+- Press `F5` to start debugging
 
 ## 📂 Project Structure
 
@@ -77,6 +77,6 @@ A minimal **Node.js + TypeScript** setup with **debugging** and **concurrent exe
 
 ## 🚀 Happy Coding! 🎯
 
-    ```sh
-    Let me know if you need any modifications! 🚀🔥
-    ```
+```sh
+  Let me know if you need any modifications! 🚀🔥
+```
