@@ -3,40 +3,55 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const { getUserInput } = require("./utils");
 
-// Get the app name from arguments
-const appName = process.argv[2];
-if (!appName) {
-  console.error("❌ Please provide an app name: npx ignite-node-ts <app-name>");
-  process.exit(1);
-}
+(async () => {
+  // Get the app name from arguments
+  const appName = process.argv[2];
 
-// Define paths
-const targetDir = path.join(process.cwd(), appName);
-const templateDir = path.join(__dirname, "../template");
+  const suggestedAppName = path.basename(process.cwd());
 
-// Check if directory exists
-if (fs.existsSync(targetDir)) {
-  console.error("❌ A folder with this name already exists.");
-  process.exit(1);
-}
+  if (!appName) {
+    appName = await getUserInput(
+      `❓ Please enter your app name (Default: ${suggestedAppName}): `
+    );
 
-// Copy template files
-fs.mkdirSync(targetDir);
-fs.cpSync(templateDir, targetDir, { recursive: true });
+    if (!appName) {
+      appName = suggestedAppName;
+    }
+  }
 
-// Update package.json with the new app name
-const packageJsonPath = path.join(targetDir, "package.json");
-const packageJson = require(packageJsonPath);
-packageJson.name = appName;
-fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  // Define paths
+  const targetDir = path.join(process.cwd(), appName);
+  const templateDir = path.join(__dirname, "../template");
 
-// Install dependencies
-console.log("📦 Installing dependencies...");
-execSync("npm install", { cwd: targetDir, stdio: "inherit" });
+  // Check if directory exists
+  if (fs.existsSync(targetDir)) {
+    console.error(`❌ A folder with name '${appName}' already exists.`);
+    process.exit(1);
+  }
 
-console.log(`✅ Project ${appName} created successfully!`);
-console.log("");
-console.log("🧑‍💻 Start Coding...");
-console.log("");
-console.log(`➡️ cd ${appName} && npm run dev`);
+  // Copy template files
+  fs.mkdirSync(targetDir);
+  fs.cpSync(templateDir, targetDir, { recursive: true });
+
+  // Update package.json with the new app name
+  const packageJsonPath = path.join(targetDir, "package.json");
+  const packageJson = require(packageJsonPath);
+
+  packageJson.name = appName;
+
+  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+
+  console.log(`✅ Project '${appName}' created successfully!`);
+
+  // Install dependencies
+  console.log("📦 Installing dependencies...");
+
+  execSync("npm install", { cwd: targetDir, stdio: "inherit" });
+
+  console.log("\n");
+  console.log("🧑‍💻 Start Coding...");
+  console.log("\n");
+  console.log(`➡️ cd ${appName} && npm run dev`);
+})();
